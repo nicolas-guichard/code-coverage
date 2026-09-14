@@ -121,14 +121,6 @@ class MozillaCentralHook(RepositoryHook):
         with open(full_path, "r") as f:
             report_text = f.read()
 
-        # Upload report as an artifact.
-        taskcluster_config.upload_artifact(
-            "public/code-coverage-report.json",
-            report_text,
-            "application/json",
-            timedelta(days=14),
-        )
-
         # Index on Taskcluster
         self.index_task(
             [
